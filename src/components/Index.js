@@ -30,28 +30,37 @@ export default function Index() {
                     scope='col'
                     className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                   >
+                    Id
+                  </th>
+                  <th
+                    scope='col'
+                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                  >
                     Fecha de solicitud
                   </th>
                   <th
                     scope='col'
                     className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                   >
-                    Title
+                    Datos del solicitante
                   </th>
                   <th
                     scope='col'
                     className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                   >
-                    Status
+                    Número de plazos
                   </th>
                   <th
                     scope='col'
                     className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                   >
-                    Role
+                    Estado
                   </th>
-                  <th scope='col' className='relative px-6 py-3'>
-                    <span className='sr-only'>Edit</span>
+                  <th
+                    scope='col'
+                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                  >
+                    Acción
                   </th>
                 </tr>
               </thead>
@@ -59,17 +68,9 @@ export default function Index() {
                 {creditos.map(
                   ({ id, fecha, montoSolicitado, plazosCredito }) => (
                     <tr key={id}>
+                      <td className='px-6 py-4 whitespace-nowrap'>{id}</td>
                       <td className='px-6 py-4 whitespace-nowrap'>
-                        <div className='flex items-center'>
-                          <div className='ml-4'>
-                            <div className='text-sm font-medium text-gray-900'>
-                              {montoSolicitado}
-                            </div>
-                            <div className='text-sm text-gray-500'>
-                              {plazosCredito}
-                            </div>
-                          </div>
-                        </div>
+                        <div className='text-sm text-gray-500'>{fecha}</div>
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap'>
                         <div className='text-sm text-gray-900'>
@@ -79,13 +80,21 @@ export default function Index() {
                           {plazosCredito}
                         </div>
                       </td>
-                      <td className='px-6 py-4 whitespace-nowrap'>
-                        <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-                          Active
+                      <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                        {plazosCredito}
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                        <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'>
+                          No aprobado
                         </span>
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-                        {plazosCredito}
+                        <button
+                          type='button'
+                          className='w-full bg-green-600 border border-transparent rounded-md flex items-center justify-center text-base font-normal text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+                        >
+                          Aprobar
+                        </button>
                       </td>
                     </tr>
                   )
