@@ -1,8 +1,13 @@
 import { useState, useEffect, useContext } from 'react'
 import LayoutContext from '../context/LayoutContext'
+import SuccessAlert from '../components/SuccessAlert'
+
+let alertTimer
 
 export default function Index() {
   const [creditos, setCreditos] = useState([])
+  const [isSuccessAlert, setIsSuccessAlert] = useState(false)
+
   const layoutContext = useContext(LayoutContext)
   const { setPath } = layoutContext
 
@@ -22,6 +27,12 @@ export default function Index() {
     setCreditos((creditos) => {
       return creditos.filter((credito) => credito.id !== indice)
     })
+    setIsSuccessAlert(true)
+    if (alertTimer) clearTimeout(alertTimer)
+    alertTimer = setTimeout(() => {
+      setIsSuccessAlert(false)
+      alertTimer = null
+    }, 4000)
     const resData = await fetch(
       'http://localhost:8080/ProyectoFinal/rs/creditos/aprobar?id=' + indice
     )
@@ -130,6 +141,10 @@ export default function Index() {
               </tbody>
             </table>
           </div>
+      <SuccessAlert
+        isSuccessAlert={isSuccessAlert}
+        setIsSuccessAlert={setIsSuccessAlert}
+      />
         </div>
       </div>
     </div>
