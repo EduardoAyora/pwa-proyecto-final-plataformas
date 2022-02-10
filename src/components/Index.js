@@ -65,6 +65,12 @@ export default function Index() {
                     scope='col'
                     className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                   >
+                    Monto Solicitado
+                  </th>
+                  <th
+                    scope='col'
+                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                  >
                     Estado
                   </th>
                   <th
@@ -100,6 +106,9 @@ export default function Index() {
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
                         {plazosCredito}
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                        {montoSolicitado}
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
                         <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'>
