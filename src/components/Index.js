@@ -18,6 +18,17 @@ export default function Index() {
     fetchCreditos()
   }, [])
 
+  const handleApproveClic = async (indice) => {
+    setCreditos((creditos) => {
+      return creditos.filter((credito) => credito.id !== indice)
+    })
+    const resData = await fetch(
+      'http://localhost:8080/ProyectoFinal/rs/creditos/aprobar?id=' + indice
+    )
+    const res = await resData.json()
+    console.log(res)
+  }
+
   return (
     <div className='flex flex-col'>
       <div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
@@ -66,7 +77,14 @@ export default function Index() {
               </thead>
               <tbody className='bg-white divide-y divide-gray-200'>
                 {creditos.map(
-                  ({ id, fecha, montoSolicitado, plazosCredito }) => (
+                  ({
+                    id,
+                    fecha,
+                    montoSolicitado,
+                    plazosCredito,
+                    cedulaPersona,
+                    nombrePersona,
+                  }) => (
                     <tr key={id}>
                       <td className='px-6 py-4 whitespace-nowrap'>{id}</td>
                       <td className='px-6 py-4 whitespace-nowrap'>
@@ -74,10 +92,10 @@ export default function Index() {
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap'>
                         <div className='text-sm text-gray-900'>
-                          {plazosCredito}
+                          {cedulaPersona}
                         </div>
                         <div className='text-sm text-gray-500'>
-                          {plazosCredito}
+                          {nombrePersona}
                         </div>
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
@@ -90,6 +108,7 @@ export default function Index() {
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
                         <button
+                          onClick={() => handleApproveClic(id)}
                           type='button'
                           className='w-full bg-green-600 border border-transparent rounded-md flex items-center justify-center text-base font-normal text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
                         >
