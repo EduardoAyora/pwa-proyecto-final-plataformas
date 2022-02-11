@@ -15,7 +15,7 @@ export default function Index() {
     setPath(window.location.pathname)
     const fetchCreditos = async () => {
       const creditosData = await fetch(
-        'http://localhost:8080/ProyectoFinal/rs/creditos/'
+        `${process.env.REACT_APP_BACKEND_REST_URL}/creditos/`
       )
       const creditos = await creditosData.json()
       setCreditos(creditos)
@@ -141,10 +141,10 @@ export default function Index() {
               </tbody>
             </table>
           </div>
-      <SuccessAlert
-        isSuccessAlert={isSuccessAlert}
-        setIsSuccessAlert={setIsSuccessAlert}
-      />
+          <SuccessAlert
+            isSuccessAlert={isSuccessAlert}
+            setIsSuccessAlert={setIsSuccessAlert}
+          />
         </div>
       </div>
     </div>
