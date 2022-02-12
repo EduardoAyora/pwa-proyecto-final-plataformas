@@ -130,7 +130,7 @@ export default function Index() {
                         <button
                           onClick={() => handleApproveClic(id)}
                           type='button'
-                          className='w-full bg-green-600 border border-transparent rounded-md flex items-center justify-center text-base font-normal text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+                          className='w-full px-1 bg-green-600 border border-transparent rounded-md flex items-center justify-center text-base font-normal text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
                         >
                           Aprobar
                         </button>
