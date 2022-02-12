@@ -108,17 +108,15 @@ export default function Example({ children }) {
                   {links.map((item) => (
                     <Disclosure.Button
                       key={item.name}
-                      as='a'
-                      href={item.href}
                       className={classNames(
                         item.current
                           ? 'bg-gray-900 text-white'
                           : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block px-3 py-2 rounded-md text-base font-medium'
+                        'block px-3 py-2 rounded-md text-base font-medium w-full text-left'
                       )}
                       aria-current={item.current ? 'page' : undefined}
                     >
-                      {item.name}
+                      <Link className='block w-full' to={item.href}>{item.name}</Link>
                     </Disclosure.Button>
                   ))}
                 </div>
