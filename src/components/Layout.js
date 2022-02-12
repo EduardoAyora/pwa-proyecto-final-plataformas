@@ -14,7 +14,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example({ children }) {
+export default function Example({ children, setIsLoggedIn }) {
   const [links, setLinks] = useState(navigation)
 
   const layoutContext = useContext(LayoutContext)
@@ -78,11 +78,12 @@ export default function Example({ children }) {
                   <div className='hidden md:block'>
                     <div className='ml-4 flex items-center md:ml-6'>
                       <button
+                        onClick={() => setIsLoggedIn(false)}
                         type='button'
                         className='bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'
                       >
                         <span className='sr-only'>View notifications</span>
-                        <BellIcon className='h-6 w-6' aria-hidden='true' />
+                        <XIcon className='h-6 w-6' aria-hidden='true' />
                       </button>
                     </div>
                   </div>
@@ -116,7 +117,9 @@ export default function Example({ children }) {
                       )}
                       aria-current={item.current ? 'page' : undefined}
                     >
-                      <Link className='block w-full' to={item.href}>{item.name}</Link>
+                      <Link className='block w-full' to={item.href}>
+                        {item.name}
+                      </Link>
                     </Disclosure.Button>
                   ))}
                 </div>

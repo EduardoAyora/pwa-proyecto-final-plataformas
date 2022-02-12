@@ -142,8 +142,10 @@ export default function Index() {
             </table>
           </div>
           <SuccessAlert
+            message={'Se ha aprobado el crédito'}
             isSuccessAlert={isSuccessAlert}
             setIsSuccessAlert={setIsSuccessAlert}
+            isErrorMessage={false}
           />
         </div>
       </div>

@@ -1,7 +1,13 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { LockClosedIcon } from '@heroicons/react/solid'
 
+import SuccessAlert from './SuccessAlert'
+
+let alertTimer
+
 export default function Example({ setIsLoggedIn }) {
+  const [isSuccessAlert, setIsSuccessAlert] = useState(false)
+
   const passwordRef = useRef()
   return (
     <>
@@ -62,6 +68,13 @@ export default function Example({ setIsLoggedIn }) {
                 onClick={() => {
                   if (passwordRef.current.value === 'admin') {
                     setIsLoggedIn(true)
+                  } else {
+                    setIsSuccessAlert(true)
+                    if (alertTimer) clearTimeout(alertTimer)
+                    alertTimer = setTimeout(() => {
+                      setIsSuccessAlert(false)
+                      alertTimer = null
+                    }, 4000)
                   }
                 }}
                 type='button'
@@ -78,6 +91,12 @@ export default function Example({ setIsLoggedIn }) {
             </div>
           </form>
         </div>
+        <SuccessAlert
+          message={'Cédula o contraseña incorrectas'}
+          isSuccessAlert={isSuccessAlert}
+          setIsSuccessAlert={setIsSuccessAlert}
+          isErrorMessage={true}
+        />
       </div>
     </>
   )

@@ -13,7 +13,7 @@ function App() {
   return (
     <LayoutContextProvider>
       {isLoggedIn ? (
-        <Layout>
+        <Layout setIsLoggedIn={setIsLoggedIn}>
           <Routes>
             <Route path='/cajeros' element={<Cajeros />} />
             <Route path='/' element={<Index />} />
