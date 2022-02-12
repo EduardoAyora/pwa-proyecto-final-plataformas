@@ -34,7 +34,7 @@ export default function Index() {
       alertTimer = null
     }, 4000)
     const resData = await fetch(
-      'http://localhost:8080/ProyectoFinal/rs/creditos/aprobar?id=' + indice
+      `${process.env.REACT_APP_BACKEND_REST_URL}/creditos/aprobar?id=` + indice
     )
     const res = await resData.json()
     console.log(res)
