@@ -1,19 +1,27 @@
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { LayoutContextProvider } from './context/LayoutContext'
+import Login from './components/Login'
 import Layout from './components/Layout'
 import Index from './components/Index'
 import Cajeros from './components/Cajeros'
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
   return (
     <LayoutContextProvider>
-      <Layout>
-        <Routes>
-          <Route path='/cajeros' element={<Cajeros />} />
-          <Route path='/' element={<Index />} />
-        </Routes>
-      </Layout>
+      {isLoggedIn ? (
+        <Layout>
+          <Routes>
+            <Route path='/cajeros' element={<Cajeros />} />
+            <Route path='/' element={<Index />} />
+          </Routes>
+        </Layout>
+      ) : (
+        <Login setIsLoggedIn={setIsLoggedIn} />
+      )}
     </LayoutContextProvider>
   )
 }
