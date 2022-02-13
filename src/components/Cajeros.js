@@ -46,7 +46,7 @@ export default function Cajeros() {
     const resData = await fetch(
       `${process.env.REACT_APP_BACKEND_REST_URL}/cajero/aprobarCajero?id=` + id
     )
-    const res = await resData.json()
+    const res = await resData.text()
     console.log(res)
   }
 

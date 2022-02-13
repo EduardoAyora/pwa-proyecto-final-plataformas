@@ -36,7 +36,7 @@ export default function Index() {
     const resData = await fetch(
       `${process.env.REACT_APP_BACKEND_REST_URL}/creditos/aprobar?id=` + indice
     )
-    const res = await resData.json()
+    const res = await resData.text()
     console.log(res)
   }
 
