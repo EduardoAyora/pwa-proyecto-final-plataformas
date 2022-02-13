@@ -6,6 +6,7 @@ import Login from './components/Login'
 import Layout from './components/Layout'
 import Index from './components/Index'
 import Cajeros from './components/Cajeros'
+import Intereses from './components/Intereses'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -16,6 +17,7 @@ function App() {
         <Layout setIsLoggedIn={setIsLoggedIn}>
           <Routes>
             <Route path='/cajeros' element={<Cajeros />} />
+            <Route path='/intereses' element={<Intereses />} />
             <Route path='/' element={<Index />} />
           </Routes>
         </Layout>
