@@ -16,15 +16,19 @@ export default function Intereses() {
 
   useEffect(() => {
     setPath(window.location.pathname)
-    const fetchCiudades = async () => {
-      const ciudadesData = await fetch(
-        `${process.env.REACT_APP_BACKEND_REST_URL}/ciudad/`
-      )
-      const ciudades = await ciudadesData.json()
-      setCiudades(ciudades)
-    }
-    fetchCiudades()
+    fetchCiudades(true)
   }, [])
+
+  const fetchCiudades = async (isInitialLoad) => {
+    const ciudadesData = await fetch(
+      `${process.env.REACT_APP_BACKEND_REST_URL}/ciudad/`
+    )
+    const ciudades = await ciudadesData.json()
+    setCiudades(ciudades)
+    if (isInitialLoad && ciudades.length > 1) {
+      setInteres(ciudades[0].interes)
+    }
+  }
 
   async function handleSubmit() {
     setIsSuccessAlert(true)
@@ -38,7 +42,7 @@ export default function Intereses() {
     )
     const res = await resData.text()
     console.log(res)
-    setInteres(0)
+    fetchCiudades()
   }
 
   return (
@@ -65,6 +69,13 @@ export default function Intereses() {
                     </label>
                     <select
                       ref={ciudadRef}
+                      onChange={(e) => {
+                        const idCiudad = e.currentTarget.value
+                        const ciudad = ciudades.find(
+                          (ciudad) => ciudad.id == idCiudad
+                        )
+                        setInteres(ciudad.interes)
+                      }}
                       className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                     >
                       {ciudades.map(({ id, nombre }) => (
